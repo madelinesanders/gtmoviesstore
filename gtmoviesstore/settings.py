@@ -48,7 +48,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "cs2340.urls"
+ROOT_URLCONF = "gtmoviesstore.urls"
 
 TEMPLATES = [
     {
@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "cs2340.wsgi.application"
+WSGI_APPLICATION = "gtmoviesstore.wsgi.application"
 
 
 # Database
