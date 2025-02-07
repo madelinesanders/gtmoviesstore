@@ -133,8 +133,9 @@
             <form method="GET" action="{% url 'home' %}">
                 <input type="text" name="q" placeholder="Search for a movie..." value="{{ query|default:'' }}">
                 <button type="submit">Search</button>
-            </form>
-        </div>
+        </form>
+    </div>
+
     </div>
 
     <h1>🎬 GT Movies Store 🎬</h1>
@@ -143,9 +144,10 @@
         {% for movie in movies %}
         <div class="movie-card">
             <a href="#">
-                <img src="{{ movie.image_url }}" alt="{{ movie.title }}">
+                <img src="{{ movie.imageUrl }}" alt="{{ movie.title }}">
                 <h3>{{ movie.title }}</h3>
             </a>
+            <p><strong>Price:</strong> ${{ movie.price }}</p>
             <button class="cart-btn">Add to Cart</button>
         </div>
         {% endfor %}
