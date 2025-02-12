@@ -24,3 +24,4 @@ urlpatterns = [
     path("movies/", include("movie_information.urls")),
     path("admin/", admin.site.urls),
 ]
+
