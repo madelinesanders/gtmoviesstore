@@ -1,0 +1,1 @@
+#no duplicate emails, check for valid email, password length
