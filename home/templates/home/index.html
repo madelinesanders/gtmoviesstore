@@ -128,7 +128,7 @@
     <div class="topnav">
         <a href="#">Home</a>
         <a href="#">About</a>
-        <a href="#">Shopping Cart</a>
+        <a href="{% url 'cart.index' %}" class="nav-link">Shopping Cart</a>
         <div class="search-container">
             <form method="GET" action="{% url 'home' %}">
                 <input type="text" name="q" placeholder="Search for a movie..." value="{{ query|default:'' }}">
