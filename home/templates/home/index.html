@@ -103,24 +103,6 @@
             padding: 10px;
             color: #B3A369;
         }
-
-        .cart-btn {
-            background-color: #B3A369;
-            color: #003057;
-            border: none;
-            border-radius: 5px;
-            padding: 8px 12px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .cart-btn:hover {
-            background-color: #003057;
-            color: #FFFFFF;
-        }
     </style>
 </head>
 <body>
@@ -148,7 +130,6 @@
                 <h3>{{ movie.title }}</h3>
             </a>
             <p><strong>Price:</strong> ${{ movie.price }}</p>
-            <button class="cart-btn">Add to Cart</button>
         </div>
         {% endfor %}
     </div>
