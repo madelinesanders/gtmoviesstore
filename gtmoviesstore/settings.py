@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "home",
+    "movie_information",
     'accounts',
 ]
 
@@ -68,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-# WSGI_APPLICATION = "gtmoviesstore.wsgi.application"
+WSGI_APPLICATION = "gtmoviesstore.wsgi.application"
 
 
 # Database
