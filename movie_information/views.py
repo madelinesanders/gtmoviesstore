@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
+from .models import Movie
 movies = [
     {
         'id': 1, 'name': 'Inception', 'price': 12,
@@ -23,3 +25,8 @@ def index(request):
     template_data['movies'] = movies
     return render(request, 'movie_information/index.html',
                   {'template_data': template_data})
+
+def movie_detail(request, movie_id):
+    # Use get_object_or_404 to fetch the movie or return a 404 if not found
+    movie = get_object_or_404(Movie, id=movie_id)
+    return render(request, 'movie_information/movie_detail.html', {'movie': movie})
