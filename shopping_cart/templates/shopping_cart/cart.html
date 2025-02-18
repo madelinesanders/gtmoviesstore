@@ -169,6 +169,9 @@
     <hr />
 
     {% if template_data.movies_in_cart|length > 0 %}
+        <a href="{% url 'cart.purchase' %}"
+          class="btn bg-dark text-white mb-2">Purchase
+        </a>
     <table>
         <thead>
             <tr>
