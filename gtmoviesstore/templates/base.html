@@ -1,3 +1,4 @@
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -102,24 +103,6 @@
             padding: 10px;
             color: #B3A369;
         }
-
-        .cart-btn {
-            background-color: #B3A369;
-            color: #003057;
-            border: none;
-            border-radius: 5px;
-            padding: 8px 12px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .cart-btn:hover {
-            background-color: #003057;
-            color: #FFFFFF;
-        }
     </style>
 </head>
 <body>
@@ -127,13 +110,14 @@
     <div class="topnav">
         <a href="#">Home</a>
         <a href="#">About</a>
-        <a href="#">Shopping Cart</a>
+        <a href="{% url 'cart.index' %}" class="nav-link">Shopping Cart</a>
         <div class="search-container">
             <form method="GET" action="{% url 'home' %}">
                 <input type="text" name="q" placeholder="Search for a movie..." value="{{ query|default:'' }}">
                 <button type="submit">Search</button>
-            </form>
-        </div>
+        </form>
+    </div>
+
     </div>
 
     <h1>🎬 GT Movies Store 🎬</h1>
@@ -141,13 +125,11 @@
     <div class="gallery">
         {% for movie in movies %}
         <div class="movie-card">
-            <!-- Link to movie detail page -->
-            <a href="{% url 'movie_detail' movie.id %}">
+            <a href="#">
                 <img src="{{ movie.imageUrl }}" alt="{{ movie.title }}">
                 <h3>{{ movie.title }}</h3>
             </a>
             <p><strong>Price:</strong> ${{ movie.price }}</p>
-            <button class="cart-btn">Add to Cart</button>
         </div>
         {% endfor %}
     </div>

@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Review - GT Movies Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #003057;
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 2rem;
+            color: #B3A369;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #B3A369;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topnav a {
+            text-decoration: none;
+            color: #003057;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 8px 16px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .topnav a:hover {
+            background-color: #003057;
+            color: #FFFFFF;
+            border-radius: 5px;
+        }
+
+        .container {
+            width: 60%;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: #1A2B3C;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .container h2 {
+            font-size: 2.5rem;
+            color: #B3A369;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            color: #B3A369;
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #B3A369;
+            background-color: #003057;
+            color: #FFFFFF;
+            font-size: 1rem;
+        }
+
+        .form-group button {
+            background-color: #B3A369;
+            color: #003057;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            width: 100%;
+        }
+
+        .form-group button:hover {
+            background-color: #003057;
+            color: #FFFFFF;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #B3A369;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="topnav">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="{% url 'cart.index' %}" class="nav-link">Shopping Cart</a>
+        <div class="search-container">
+            <form method="GET" action="{% url 'home' %}">
+                <input type="text" name="q" placeholder="Search for a movie..." value="{{ query|default:'' }}">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <h1>🎬 GT Movies Store 🎬</h1>
+
+    <div class="container">
+        <h2>Edit Your Review for "{{ movie.title }}"</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="rating">Rating:</label>
+                <select name="rating" id="rating">
+                    <option value="1" {% if review.rating == 1 %}selected{% endif %}>1 Star</option>
+                    <option value="2" {% if review.rating == 2 %}selected{% endif %}>2 Stars</option>
+                    <option value="3" {% if review.rating == 3 %}selected{% endif %}>3 Stars</option>
+                    <option value="4" {% if review.rating == 4 %}selected{% endif %}>4 Stars</option>
+                    <option value="5" {% if review.rating == 5 %}selected{% endif %}>5 Stars</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="comment">Your Comment:</label>
+                <textarea name="comment" id="comment" rows="6">{{ review.comment }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Update Review</button>
+            </div>
+        </form>
+
+        <div class="back-link">
+            <a href="{% url 'movie_detail' movie.id %}">Back to Movie Details</a>
+        </div>
+    </div>
+
+</body>
+</html>
