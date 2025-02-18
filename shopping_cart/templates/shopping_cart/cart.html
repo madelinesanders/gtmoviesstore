@@ -149,7 +149,6 @@
 <!-- Top Navigation Bar (Same as Home Page) -->
 <div class="topnav">
     <a href="{% url 'home' %}">Home</a>
-    <span class="nav-link disabled">About</span>
     <a href="{% url 'cart.index' %}" style="background-color: #003057; color: #FFFFFF; border-radius: 5px;">Shopping Cart</a>
 
     {% if request.resolver_match.url_name != "cart.index" %}

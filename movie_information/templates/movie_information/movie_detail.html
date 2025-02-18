@@ -16,6 +16,7 @@
             margin-top: 20px;
             font-size: 2rem;
             color: #B3A369;
+            text-align: center;
         }
 
         .topnav {
@@ -202,15 +203,8 @@
 <body>
 
     <div class="topnav">
-        <a href="#">Home</a>
-        <a href="#">About</a>
+        <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'cart.index' %}" class="nav-link">Shopping Cart</a>
-        <div class="search-container">
-            <form method="GET" action="{% url 'home' %}">
-                <input type="text" name="q" placeholder="Search for a movie..." value="{{ query|default:'' }}">
-                <button type="submit">Search</button>
-            </form>
-        </div>
     </div>
 
     <h1>🎬 GT Movies Store 🎬</h1>

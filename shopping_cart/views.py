@@ -64,5 +64,5 @@ def purchase(request):
     template_data = {}
     template_data['title'] = 'Purchase confirmation'
     template_data['order_id'] = order.id
-    return render(request, 'cart/purchase.html',
+    return render(request, 'shopping_cart/purchase.html',
         {'template_data': template_data})

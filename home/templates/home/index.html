@@ -126,8 +126,7 @@
 
     <div class="topnav">
         <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Shopping Cart</a>
+        <a href="{% url 'cart.index' %}">Shopping Cart</a>
         <div class="search-container">
             <form method="GET" action="{% url 'home' %}">
                 <input type="text" name="q" placeholder="Search for a movie..." value="{{ query|default:'' }}">
@@ -147,7 +146,6 @@
                 <h3>{{ movie.title }}</h3>
             </a>
             <p><strong>Price:</strong> ${{ movie.price }}</p>
-            <button class="cart-btn">Add to Cart</button>
         </div>
         {% endfor %}
     </div>
