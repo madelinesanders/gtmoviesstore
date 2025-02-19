@@ -8,31 +8,25 @@
           <div class="card-body">
             <h2>Login</h2>
             <hr />
-            {% if template_data.error %}
+            {% if template_data.form.errors %}
             <div class="alert alert-danger" role="alert">
-              {{ template_data.error }}
+              {% for error in template_data.form.non_field_errors %}
+                {{ error }}
+              {% endfor %}
             </div>
             {% endif %}
             <form method="POST">
               {% csrf_token %}
               <p>
-                <label for="username">Username</label>
-                <input id="username" type="text"
-                       name="username" required
-                       autocomplete="username"
-                       class="form-control">
+                <label for="id_email">Email</label>
+                {{ template_data.form.email }}
               </p>
               <p>
-                <label for="password">Password</label>
-                <input id="password" type="password"
-                       name="password" required
-                       autocomplete="current-password"
-                       class="form-control">
+                <label for="id_password">Password</label>
+                {{ template_data.form.password }}
               </p>
               <div class="text-center">
-                <button type="submit"
-                  class="btn bg-dark text-white">Login
-                </button>
+                <button type="submit" class="btn bg-dark text-white">Login</button>
               </div>
             </form>
           </div>
