@@ -37,10 +37,11 @@ def signup(request):
         form = CustomUserCreationForm(request.POST, error_class=CustomErrorList)
         if form.is_valid():
             form.save()
-            return redirect('accounts.login')  # ✅ Fix: Redirect to correct login URL
+            return redirect('accounts.login')
 
         template_data['form'] = form
         return render(request, 'accounts/signup.html', {'template_data': template_data})
+
 @login_required
 def orders(request):
     template_data={}

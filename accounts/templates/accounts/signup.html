@@ -10,10 +10,23 @@
             <hr />
             <form method="POST">
               {% csrf_token %}
-              {{ template_data.form.as_p }}
-              <button type="submit"
-                class="btn bg-dark text-white">Sign Up
-              </button>
+              <p>
+                <label for="id_username">Username</label>
+                {{ template_data.form.username }}
+              </p>
+              <p>
+                <label for="id_email">Email</label>
+                {{ template_data.form.email }}
+              </p>
+              <p>
+                <label for="id_password1">Password</label>
+                {{ template_data.form.password1 }}
+              </p>
+              <p>
+                <label for="id_password2">Confirm Password</label>
+                {{ template_data.form.password2 }}
+              </p>
+              <button type="submit" class="btn bg-dark text-white">Sign Up</button>
             </form>
           </div>
         </div>
