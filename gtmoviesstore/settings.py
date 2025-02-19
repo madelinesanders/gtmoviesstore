@@ -125,7 +125,10 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-AUTHENTICATION_BACKENDS = ['accounts.authentication.EmailAuthBackend']
+AUTHENTICATION_BACKENDS = [
+    'accounts.authentication.EmailAuthBackend',  # Custom email-based authentication
+    'django.contrib.auth.backends.ModelBackend',  # Default Django username authentication
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
