@@ -8,7 +8,7 @@ from .forms import CustomUserCreationForm, CustomErrorList
 @login_required
 def logout(request):
     auth_logout(request)
-    return redirect('home')  # Ensure 'home' is correctly named in urls.py
+    return redirect('landing.index')  # Ensure 'home' is correctly named in urls.py
 
 def login(request):
     template_data = {'title': 'Login'}

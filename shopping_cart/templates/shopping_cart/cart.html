@@ -4,7 +4,7 @@
 
 <style>
     body {
-        font-family: Arial, sans-serif;
+        font-family: 'Poppins', sans-serif;
         background-color: #003057;
         color: #FFFFFF;
         text-align: center;
@@ -13,7 +13,6 @@
     }
 
     .topnav {
-        overflow: hidden;
         background-color: #B3A369;
         padding: 10px;
         display: flex;
@@ -105,8 +104,8 @@
     }
 
     .cart-btn:hover {
-        background-color: #003057;
-        color: #FFFFFF;
+        background-color: #FFD700;
+        color: #003057;
     }
 
     .remove-btn {
@@ -122,7 +121,9 @@
 <!-- Top Navigation Bar -->
 <div class="topnav">
     <a href="{% url 'home' %}">Home</a>
-    <a href="{% url 'cart.index' %}" style="background-color: #003057; color: #FFFFFF; border-radius: 5px;">Shopping Cart</a>
+    <a href="{% url 'cart.index' %}">Shopping Cart</a>
+    <a href="{% url 'accounts.orders' %}">My Orders</a>
+    <a href="{% url 'accounts.logout' %}">Logout</a>
 </div>
 
 <!-- Shopping Cart Content -->

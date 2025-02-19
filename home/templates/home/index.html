@@ -129,18 +129,10 @@
 <body>
 
     <div class="topnav">
-        <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'cart.index' %}">Shopping Cart</a>
-
-        <div class="nav-container">
-            <!-- Show My Orders & Logout when user is authenticated -->
-            {% if user.is_authenticated %}
-                <a href="{% url 'accounts.orders' %}" class="nav-btn">My Orders</a>
-                <a href="{% url 'accounts.logout' %}" class="nav-btn">Logout</a>
-            {% else %}
-                <a href="{% url 'accounts.login' %}" class="nav-btn">Login</a>
-                <a href="{% url 'accounts.signup' %}" class="nav-btn">Sign Up</a>
-            {% endif %}
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'cart.index' %}">Shopping Cart</a>
+            <a href="{% url 'accounts.orders' %}">My Orders</a>
+            <a href="{% url 'accounts.logout' %}">Logout</a>
         </div>
 
         <div class="search-container">
