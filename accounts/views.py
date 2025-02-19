@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate, update_session_auth_hash
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import CustomUserCreationForm, CustomErrorList
@@ -47,3 +47,21 @@ def orders(request):
     template_data['title'] = 'Orders'
     template_data['orders'] = request.user.order_set.all()
     return render(request, 'accounts/orders.html', {'template_data': template_data})
+
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Keeps the user logged in after password change
+            return redirect('accounts.password_change_done')  # Redirect to confirmation page
+    else:
+        form = PasswordChangeForm(request.user)
+
+    return render(request, 'accounts/password_change.html', {'form': form})
+
+@login_required
+def password_change_done(request):
+    return render(request, 'accounts/password_change_done.html')

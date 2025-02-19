@@ -97,6 +97,7 @@
         <a href="{% url 'cart.index' %}">Shopping Cart</a>
         {% if user.is_authenticated %}
             <a href="{% url 'accounts.orders' %}">My Orders</a>
+            <a href="{% url 'accounts.change_password' %}">Change Password</a>
             <a href="{% url 'accounts.logout' %}">Logout</a>
         {% else %}
             <a href="{% url 'accounts.login' %}">Login</a>
