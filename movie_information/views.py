@@ -3,6 +3,7 @@ from .models import Review
 from .forms import ReviewForm, ReviewEditForm
 from home.models import Movie
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 def movie_detail(request, movie_id):
     movie = get_object_or_404(Movie, id=movie_id)
@@ -50,3 +51,13 @@ def edit_review(request, review_id):
         'form': form,  # The form object
         'movie': movie  # The related movie object)
     })
+def delete_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+
+    if review.user == request.user:
+        review.delete()
+        messages.success(request, "Review deleted successfully.")
+    else:
+        messages.error(request, "You are not authorized to delete this review.")
+
+    return redirect('movie_detail', movie_id=review.movie.id)

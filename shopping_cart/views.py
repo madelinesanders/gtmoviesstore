@@ -25,7 +25,7 @@ def add(request, id):
     cart = request.session.get('cart', {})
     cart[id] = request.POST['quantity']
     request.session['cart'] = cart
-    return redirect('home.index')
+    return redirect('cart.index')
 
 def cart(request):
     return render(request, 'shopping_cart/cart.html')

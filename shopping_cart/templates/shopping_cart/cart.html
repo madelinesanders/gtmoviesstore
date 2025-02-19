@@ -36,36 +36,6 @@
         border-radius: 5px;
     }
 
-    .search-container {
-        display: flex;
-        align-items: center;
-    }
-
-    .search-container input[type="text"] {
-        padding: 8px;
-        font-size: 16px;
-        border: 2px solid #B3A369;
-        border-radius: 5px;
-        margin-right: 10px;
-    }
-
-    .search-container button {
-        padding: 8px 12px;
-        background-color: #B3A369;
-        border: none;
-        color: #003057;
-        font-weight: bold;
-        cursor: pointer;
-        border-radius: 5px;
-        font-size: 16px;
-        transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .search-container button:hover {
-        background-color: #003057;
-        color: #FFFFFF;
-    }
-
     .container {
         max-width: 900px;
         margin: auto;
@@ -106,22 +76,32 @@
     }
 
     .cart-total {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         font-weight: bold;
         color: #B3A369;
         margin-top: 20px;
     }
 
-    .cart-btn {
-        background-color: #B3A369;
-        color: #003057;
+    .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    .cart-btn, .remove-btn {
         border: none;
         border-radius: 5px;
-        padding: 10px 16px;
+        padding: 12px 20px;
         font-size: 16px;
         font-weight: bold;
         cursor: pointer;
         transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .cart-btn {
+        background-color: #B3A369;
+        color: #003057;
     }
 
     .cart-btn:hover {
@@ -132,13 +112,6 @@
     .remove-btn {
         background-color: #B22222;
         color: #FFFFFF;
-        border: none;
-        border-radius: 5px;
-        padding: 10px 16px;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
     }
 
     .remove-btn:hover {
@@ -146,21 +119,11 @@
     }
 </style>
 
-<!-- Top Navigation Bar (Same as Home Page) -->
+<!-- Top Navigation Bar -->
 <div class="topnav">
     <a href="{% url 'home' %}">Home</a>
     <a href="{% url 'cart.index' %}" style="background-color: #003057; color: #FFFFFF; border-radius: 5px;">Shopping Cart</a>
-
-    {% if request.resolver_match.url_name != "cart.index" %}
-    <div class="search-container">
-        <form method="GET" action="{% url 'home' %}">
-            <input type="text" name="q" placeholder="Search for a movie..." value="{{ query|default:'' }}">
-            <button type="submit">Search</button>
-        </form>
-    </div>
-    {% endif %}
 </div>
-
 
 <!-- Shopping Cart Content -->
 <div class="container">
@@ -168,13 +131,9 @@
     <hr />
 
     {% if template_data.movies_in_cart|length > 0 %}
-        <a href="{% url 'cart.purchase' %}"
-          class="btn bg-dark text-white mb-2">Purchase
-        </a>
     <table>
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Name</th>
                 <th>Price</th>
                 <th>Quantity</th>
@@ -183,8 +142,7 @@
         <tbody>
             {% for movie in template_data.movies_in_cart %}
             <tr>
-                <td>{{ movie.id }}</td>
-                <td>{{ movie.name }}</td>
+                <td>{{ movie.title }}</td>
                 <td>${{ movie.price }}</td>
                 <td>{{ request.session.cart|get_quantity:movie.id }}</td>
             </tr>
@@ -194,9 +152,14 @@
 
     <p class="cart-total">Total to Pay: ${{ template_data.cart_total }}</p>
 
-    <a href="{% url 'cart.clear' %}">
-        <button class="remove-btn">Remove all movies from Cart</button>
-    </a>
+    <div class="button-container">
+        <a href="{% url 'cart.clear' %}">
+            <button class="remove-btn">Remove All Movies</button>
+        </a>
+        <a href="{% url 'cart.purchase' %}">
+            <button class="cart-btn">Purchase</button>
+        </a>
+    </div>
 
     {% else %}
     <p style="font-size: 1.2rem; color: #B3A369;">Your cart is empty. Browse movies to add items!</p>
