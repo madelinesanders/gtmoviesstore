@@ -18,7 +18,6 @@
               table-striped text-center mt-3">
               <thead>
                 <tr>
-                  <th scope="col">Item ID</th>
                   <th scope="col">Movie</th>
                   <th scope="col">Price</th>
                   <th scope="col">Quantity</th>
@@ -27,12 +26,9 @@
               <tbody>
                 {% for item in order.item_set.all %}
                 <tr>
-                  <td>{{ item.movie.id }}</td>
                   <td>
-                    <a class="link-dark"
-                      href="{% url 'movies.show'
-                      id=item.movie.id %}">
-                      {{ item.movie.name }}
+                    <a>
+                      {{ item.movie.title }}
                     </a>
                   </td>
                   <td>${{ item.movie.price }}</td>
